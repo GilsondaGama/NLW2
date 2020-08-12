@@ -2,46 +2,35 @@
   "name": "proffy-api",
   "version": "1.0.0",
   "main": "index.js",
+  "author": "Gilson da Gama <gilsondagama@hotmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
+    "knex:migrate:rollback": "knex --knexfile knexfile.ts migrate:rollback"
+  },
   "dependencies": {
-    "celebrate": "^12.2.0",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "helmet": "^4.0.0",
     "knex": "^0.21.2",
     "sqlite3": "^5.0.0"
-  },
-  "scripts": {
-    "dev:server": "tsnd --transpile-only --ignore-watch node_modules --respawn src/server.ts",
-    "knex:migrate": "knex --knexfile knexfile.ts migrate:latest",
-    "knex:rollback": "knex --knexfile knexfile.ts migrate:rollback",
-    "build": "tsc",
-    "test": "cross-env NODE_ENV=test jest"
-  },
+  },  
   "devDependencies": {
     "@types/cors": "^2.8.7",
     "@types/express": "^4.17.7",
-    "@types/factory-girl": "^5.0.2",
-    "@types/faker": "^4.1.12",
-    "@types/jest": "^26.0.9",
-    "@types/supertest": "^2.0.10",
+    "ts-node-dev": "^1.0.0-pre.56",
+    "typescript": "^3.9.7",
+
     "@typescript-eslint/eslint-plugin": "^3.8.0",
     "@typescript-eslint/parser": "^3.8.0",
-    "cross-env": "^7.0.2",
     "eslint": "^7.6.0",
     "eslint-config-airbnb-base": "^14.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-import-resolver-typescript": "^2.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-prettier": "^3.1.4",
-    "factory-girl": "^5.0.4",
-    "faker": "^4.1.0",
-    "jest": "^26.2.2",
-    "prettier": "^2.0.5",
-    "supertest": "^4.0.2",
-    "ts-jest": "^26.1.4",
-    "ts-node-dev": "^1.0.0-pre.56",
-    "typescript": "^3.9.7"
+    "prettier": "^2.0.5"
+
+
   }
 }

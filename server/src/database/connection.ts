@@ -1,6 +1,8 @@
 import knex from 'knex';
 import path from 'path';
 
+// Migrations => Controlam a versão do banco de dados (funciona como o git);
+
 const db = knex({
   client: 'sqlite3',
   connection: {
