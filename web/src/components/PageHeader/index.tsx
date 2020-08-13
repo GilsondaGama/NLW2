@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 
-import LogoImg from '../../assets/images/logo.svg';
-import BackIcon from '../../assets/images/icons/back.svg';
+import backIcon from '../../assets/images/icons/back.svg';
+import logoImg from '../../assets/images/logo.svg';
+
 import './styles.css';
 
 interface PageHeaderProps {
@@ -10,26 +12,23 @@ interface PageHeaderProps {
   description?: string;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({
-  title,
-  description,
-  children,
-}) => {
+const PageHeader: React.FC<PageHeaderProps> = (props) => {
   return (
     <header className="page-header">
       <div className="top-bar-container">
         <Link to="/">
-          <img src={BackIcon} alt="Voltar" />
+          <img src={backIcon} alt="Voltar" />
         </Link>
-        <img src={LogoImg} alt="Proffy" />
+
+        <img src={logoImg} alt="Proffy" />
       </div>
 
       <div className="header-content">
-        <strong>{title}</strong>
+        <strong>{props.title}</strong>
 
-        {description && <p>{description}</p>}
+        {props.description && <p>{props.description}</p>}
 
-        {children}
+        {props.children}
       </div>
     </header>
   );

@@ -1,5 +1,4 @@
-import React, { SelectHTMLAttributes, useEffect, useRef } from 'react';
-import { useField } from '@unform/core';
+import React, { SelectHTMLAttributes } from 'react';
 
 import './styles.css';
 
@@ -10,44 +9,22 @@ interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
     value: string;
     label: string;
   }>;
+
 }
 
-const Select: React.FC<SelectProps> = ({ name, label, options, ...props }) => {
-  const inputRef = useRef(null);
-  const { fieldName, defaultValue = '', registerField, error } = useField(name);
-
-  useEffect(() => {
-    registerField({
-      name: fieldName,
-      ref: inputRef.current,
-      path: 'value',
-    });
-  }, [fieldName, registerField]);
-
-  return (
+const Select: React.FC<SelectProps> = ({ label, name, options, ...rest}) => {
+  return(
     <div className="select-block">
-      <label htmlFor={name}>
-        {label}
-        <select
-          id={name}
-          name={name}
-          defaultValue={defaultValue}
-          ref={inputRef}
-          {...props}
-        >
-          <option value="" disabled hidden>
-            Selecione uma opção
-          </option>
-          {options.map(option => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-      </label>
-      {error && <span>{error}</span>}
+      <label htmlFor={name}>{label}</label>
+      <select value="" id={name} {...rest}>
+        <option value="" disabled hidden>Selecione uma opção</option>
+
+        {options.map(option => {
+          return <option key={option.value} value={option.value}>{option.label}</option>
+        })}
+      </select>
     </div>
-  );
-};
+  )
+}
 
 export default Select;
