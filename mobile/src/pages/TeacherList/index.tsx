@@ -1,142 +1,210 @@
-import React, { useState, useCallback, useRef } from 'react';
-import { Feather } from '@expo/vector-icons';
-import { Alert } from 'react-native';
-import { BorderlessButton } from 'react-native-gesture-handler';
+import React, { useState} from 'react';
+import { View, ScrollView, Text, TextInput, Picker } from 'react-native';
+import { BorderlessButton, RectButton } from 'react-native-gesture-handler';
+import {Feather} from '@expo/vector-icons'
 import AsyncStorage from '@react-native-community/async-storage';
-import { FormHandles } from '@unform/core';
-import * as Yup from 'yup';
 import { useFocusEffect } from '@react-navigation/native';
 
-import PageHeader from '../../components/PageHeader';
-import TeacherItem from '../../components/TeacherItem';
-import Input from '../../components/Input';
 import api from '../../services/api';
-import { Teacher } from '../../components/TeacherItem';
-import getValidationErrors from '../../utils/getValidationErrors';
-import {
-  Container,
-  List,
-  SearchForm,
-  Label,
-  InputGroup,
-  InputBlock,
-  SubmitButton,
-  SubmitButtonText,
-} from './styles';
 
-const TeacherList: React.FC = () => {
-  const [teachers, setTeachers] = useState<Teacher[]>([]);
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [isFiltersVisible, setIsfiltersVisible] = useState(false);
-  const formRef = useRef<FormHandles>(null);
+import PageHeader from '../../components/PageHeader';
+import TeacherItem, { Teacher } from '../../components/TeacherItem';
 
-  const handleToggleFiltersVisible = useCallback(() => {
-    setIsfiltersVisible(!isFiltersVisible);
-  }, [isFiltersVisible]);
+import styles from './styles';
 
-  const handleSubmit = useCallback(async ({ subject, week_day, time }) => {
-    try {
-      const schema = Yup.object().shape({
-        subject: Yup.string().required('Este campo é obrigatório'),
-        week_day: Yup.string().required('Este campo é obrigatório'),
-        time: Yup.string().required('Este campo é obrigatório'),
-      });
+function TeacherList(){
+    const [teachers, setTeachers] = useState([]);
+    const [favorites, setFavorites] = useState<number[]>([]);
+    const [isFiltersVisible, setIsFiltersVisible] = useState(false);
 
-      const data = {
-        subject: subject,
-        week_day: week_day,
-        time: time,
-      };
+    const [subject, setSubject] = useState('');
+    const [week_day, setWeek_day] = useState('');
+    const [time, setTime] = useState('');
 
-      await schema.validate(data, { abortEarly: false });
+    function loadFavorites(){
+        AsyncStorage.getItem('favorites').then(response => {
+            if(response){
+                const favoritedTeachers = JSON.parse(response);
+                const favoritedTeachersIds = favoritedTeachers.map((teacher: Teacher) => {
+                    return teacher.id;
+                })
 
-      const response = await api.get<Teacher[]>('classes', {
-        params: data,
-      });
-
-      setTeachers(response.data);
-      setIsfiltersVisible(false);
-      loadFavorites();
-    } catch (err) {
-      console.log(err);
-
-      if (err instanceof Yup.ValidationError) {
-        const errors = getValidationErrors(err);
-
-        formRef.current?.setErrors(errors);
-      } else {
-        Alert.alert('Ops! Alguma coisa deu errado, tente mais tarde!');
-      }
+                setFavorites(favoritedTeachersIds);
+            }
+        })
     }
-  }, []);
 
-  const loadFavorites = useCallback(() => {
-    AsyncStorage.getItem('favorites').then(response => {
-      if (response) {
-        const favorited = JSON.parse(response);
-        setFavorites(favorited.map((teacher: Teacher) => teacher.id));
-      }
-    });
-  }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+          loadFavorites();
+        }, [])
+      )
 
-  useFocusEffect(() => {
-    loadFavorites();
-  });
+    function handleToggleFiltersVisible(){
+        setIsFiltersVisible(!isFiltersVisible)
+    }
 
-  return (
-    <Container>
-      <PageHeader
-        title="Proffys disponíveis"
-        headerRight={
-          <BorderlessButton onPress={handleToggleFiltersVisible}>
-            <Feather name="filter" size={20} color="#FFF" />
-          </BorderlessButton>
+    async function handleFiltersSubmit(){
+        loadFavorites();
+
+        try{
+            const response = await api.get('classes', {
+                params:{
+                    subject,
+                    week_day,
+                    time,
+                }
+            });
+    
+            setIsFiltersVisible(false);
+            setTeachers(response.data);
+        } catch(error){
+            console.log(error);
         }
-      >
-        {isFiltersVisible && (
-          <SearchForm ref={formRef} onSubmit={handleSubmit}>
-            <Label>Máteria</Label>
-            <Input name="subject" placeholder="Qual a máteria?" />
+    }
 
-            <InputGroup>
-              <InputBlock>
-                <Label>Dia da semana</Label>
-                <Input name="week_day" placeholder="Qual o dia?" />
-              </InputBlock>
+    return(
+        <View style={styles.container}>
 
-              <InputBlock>
-                <Label>Horário</Label>
-                <Input name="time" placeholder="Qual o horário?" />
-              </InputBlock>
-            </InputGroup>
+            <PageHeader  
+                title="Proffys Disponíveis" 
+                headerRigth={(
+                    <BorderlessButton onPress={handleToggleFiltersVisible}>
 
-            <SubmitButton
-              onPress={() => {
-                formRef.current?.submitForm();
-              }}
+                        <Feather name="filter" size={20} color="#fff" />
+
+                    </BorderlessButton>
+                )}
             >
-              <SubmitButtonText>Filtrar</SubmitButtonText>
-            </SubmitButton>
-          </SearchForm>
-        )}
-      </PageHeader>
 
-      <List
-        contentContainerStyle={{
-          paddingHorizontal: 16,
-          paddingBottom: 16,
-        }}
-      >
-        {teachers.map((teacher: Teacher) => (
-          <TeacherItem
-            key={teacher.id}
-            teacher={teacher}
-            favorited={favorites.includes(teacher.id)}
-          />
-        ))}
-      </List>
-    </Container>
-  );
-};
+                { isFiltersVisible && (
+                
+                    <View style={styles.searchForm}>
+
+                        <Text style={styles.label}>Matéria</Text>
+
+                        <View style={styles.inputContainer}>
+
+                            <Picker
+                            style={styles.input}
+                            selectedValue={subject}
+                            onValueChange={(itemValue) => setSubject(itemValue)}
+                            >
+
+                                <Picker.Item label="Artes" value="Artes" />
+                                <Picker.Item label="Biologia" value="Biologia" />
+                                <Picker.Item label="Ciências" value="Ciências" />
+                                <Picker.Item label="Educação Física" value="Educação Física" />
+                                <Picker.Item label="Física" value="Física" />
+                                <Picker.Item label="Geografia" value="Geografia" />
+                                <Picker.Item label="História" value="História" />
+                                <Picker.Item label="Matemática" value="Matemática" />
+                                <Picker.Item label="Português" value="Português" />
+                                <Picker.Item label="Química" value="Química" />
+
+                            </Picker>
+
+                        </View>
+
+                        <View style={styles.inputGroup}>
+
+                            <View style={styles.inputBlock}>
+
+                                <Text style={styles.label}>Dia da semana</Text>
+
+                                <View style={styles.inputContainer}>
+
+                                    <Picker
+                                    style={styles.input}
+                                    selectedValue={week_day}
+                                    onValueChange={(itemValue) => setWeek_day(itemValue)}
+                                    >
+
+                                        <Picker.Item label="Domingo" value="0" />
+                                        <Picker.Item label="Segunda-Feira" value="1" />
+                                        <Picker.Item label="Terça-Feira" value="2" />
+                                        <Picker.Item label="Quarta-Feira" value="3" />
+                                        <Picker.Item label="Quinta-Feira" value="4" />
+                                        <Picker.Item label="Sexta-Feira" value="5" />
+                                        <Picker.Item label="Sábado" value="6" />
+
+                                    </Picker>
+
+                                </View>
+
+                            </View>
+
+                            <View style={styles.inputBlock}>
+
+                                <Text style={styles.label}>Horário</Text>
+
+                                <View style={styles.inputContainer}>
+
+                                    <Picker
+                                    style={styles.input}
+                                    selectedValue={time}
+                                    onValueChange={(itemValue) => setTime(itemValue)}
+                                    >
+
+                                        <Picker.Item label="6:00" value="6:00" />
+                                        <Picker.Item label="7:00" value="7:00" />
+                                        <Picker.Item label="8:00" value="8:00" />
+                                        <Picker.Item label="9:00" value="9:00" />
+                                        <Picker.Item label="10:00" value="10:00" />
+                                        <Picker.Item label="11:00" value="11:00" />
+                                        <Picker.Item label="12:00" value="12:00" />
+                                        <Picker.Item label="13:00" value="13:00" />
+                                        <Picker.Item label="14:00" value="1400" />
+                                        <Picker.Item label="15:00" value="15:00" />
+                                        <Picker.Item label="16:00" value="16:00" />
+                                        <Picker.Item label="17:00" value="17:00" />
+                                        <Picker.Item label="18:00" value="18:00" />
+                                        <Picker.Item label="19:00" value="19:00" />
+                                        <Picker.Item label="20:00" value="20:00" />
+                                        <Picker.Item label="21:00" value="21:00" />
+
+                                    </Picker>
+
+                                </View>
+
+                            </View>
+
+                        </View>
+
+                        <RectButton 
+                            style={styles.submitButton}
+                            onPress={handleFiltersSubmit}
+                        >
+
+                            <Text style={styles.submitButtonText}>Filtrar</Text>
+
+                        </RectButton>
+
+                    </View>
+                )}
+
+            </PageHeader>
+            
+            <ScrollView
+              style={styles.teacherList}
+              contentContainerStyle={{
+                  paddingHorizontal: 16,
+                  paddingBottom: 24
+              }}  
+            >
+                {teachers.map((teacher: Teacher) => {
+                    return (
+                        <TeacherItem 
+                            key={teacher.id} 
+                            teacher={teacher}
+                            favorited={favorites.includes(teacher.id)}
+                        />)
+                })}
+
+            </ScrollView>
+
+        </View>
+    )
+}
 
 export default TeacherList;

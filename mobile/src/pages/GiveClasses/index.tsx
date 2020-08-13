@@ -1,38 +1,47 @@
-import React, { useCallback } from 'react';
+import React from 'react';
+import { View, ImageBackground, Text } from 'react-native';
+import { RectButton } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-import GiveClassesBgImg from '../../assets/images/give-classes-background.png';
-import {
-  Container,
-  Content,
-  Title,
-  Description,
-  OkButton,
-  OkButtonText,
-} from './styles';
+import giveClassesBgImage from '../../assets/images/give-classes-background.png'
 
-const GiveClasses = () => {
-  const { goBack } = useNavigation();
+import styles from './styles';
 
-  const handleNavigateBack = useCallback(() => {
-    goBack();
-  }, []);
+function GiveClasses(){
+    const { goBack } = useNavigation()
 
-  return (
-    <Container>
-      <Content source={GiveClassesBgImg} resizeMode="contain">
-        <Title>Quer ser um Proffy?</Title>
-        <Description>
-          Para começar, você precisa se cadastrar como professor na nossa
-          plataforma web.
-        </Description>
-      </Content>
+    function handleNavigationBack(){
+        goBack();
+    }
 
-      <OkButton onPress={handleNavigateBack}>
-        <OkButtonText>Tudo Bem</OkButtonText>
-      </OkButton>
-    </Container>
-  );
-};
+    return(
+        <View style={styles.container}>
+
+            <ImageBackground 
+                resizeMode="contain" 
+                source={giveClassesBgImage} 
+                style={styles.content}
+            >
+
+                <Text style={styles.title}>Quer ser um Proffy?</Text>
+                <Text style={styles.description}>
+                    Para começar, você precisa se cadastrar 
+                    como professor na nossa plataforma web.
+                </Text>
+
+            </ImageBackground>
+
+            <RectButton 
+                style={styles.okButton}
+                onPress={handleNavigationBack}
+            >
+
+                <Text style={styles.okButtonText}>Tudo Bem!</Text>
+
+            </RectButton>
+
+        </View>
+    )
+}
 
 export default GiveClasses;

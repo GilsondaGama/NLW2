@@ -1,61 +1,85 @@
-import React, { useCallback } from 'react';
-import { Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { RectButton } from 'react-native-gesture-handler'
 
-import LandingImg from '../../assets/images/landing.png';
-import StudyIcon from '../../assets/images/icons/study.png';
-import HeartIcon from '../../assets/images/icons/heart.png';
-import GiveClassesIcon from '../../assets/images/icons/give-classes.png';
-import {
-  Container,
-  Banner,
-  Title,
-  TitleBold,
-  ButtonsContainer,
-  Button,
-  ButtonText,
-  TotalConnections,
-} from './styles';
+import api from '../../services/api';
 
-const Landing: React.FC = () => {
-  const { navigate } = useNavigation();
+import styles from './styles';
 
-  const handleNavigationToGiveClassesPage = useCallback(() => {
-    navigate('GiveClasses');
-  }, [navigate]);
+import landingImage from '../../assets/images/landing.png';
+import studyIcon from '../../assets/images/icons/study.png';
+import giveClassesIcon from '../../assets/images/icons/give-classes.png';
+import heartIcon from '../../assets/images/icons/heart.png';
 
-  const handleNavigationToStudyClassesPage = useCallback(() => {
-    navigate('Study');
-  }, []);
+function Landing(){
+    const { navigate } = useNavigation();
+    const [totalConnections, setTotalConnections] = useState(0);
 
-  return (
-    <Container>
-      <Banner source={LandingImg} resizeMode="contain" />
+    function handleNavigateToGiveClassesPage(){
+        navigate('GiveClasses')
+    }
 
-      <Title>
-        Seja bem-vindo, {'\n'}
-        <TitleBold>O que deseja fazer?</TitleBold>
-      </Title>
+    function handleNavigateToStudyPages(){
+        navigate('Study')
+    }
 
-      <ButtonsContainer>
-        <Button color="primary" onPress={handleNavigationToStudyClassesPage}>
-          <Image source={StudyIcon} />
+    useEffect(() => {
+        api.get('connections').then(response => {
+            const { total } = response.data;
 
-          <ButtonText>Estudar</ButtonText>
-        </Button>
+            setTotalConnections(total);
+        })
+    })
 
-        <Button color="secondary" onPress={handleNavigationToGiveClassesPage}>
-          <Image source={GiveClassesIcon} />
+    return(
+        <View style={styles.container}>
 
-          <ButtonText>Dar Aulas</ButtonText>
-        </Button>
-      </ButtonsContainer>
+            <Image source={landingImage} style={styles.banner}/>
 
-      <TotalConnections>
-        Total de 285 conexões já realizadas <Image source={HeartIcon} />
-      </TotalConnections>
-    </Container>
-  );
-};
+            <Text style={styles.title}>
+
+                Seja Bem Vindo, {'\n'}
+                <Text style={styles.titleBold}>O que deseja fazer</Text>
+
+            </Text>
+
+            <View style={styles.buttonsContainer}>
+
+                <RectButton 
+                    style={[styles.button, styles.buttonPrimary]}
+                    onPress={handleNavigateToStudyPages}
+                >
+
+                    <Image source={studyIcon} />
+
+                    <Text style={styles.buttonText}>Estudar</Text>
+
+                </RectButton>
+
+                <RectButton 
+                    style={[styles.button, styles.buttonSecondary]}
+                    onPress={handleNavigateToGiveClassesPage}
+                >
+
+                    <Image source={giveClassesIcon} />
+
+                    <Text style={styles.buttonText}>Dar Aulas</Text>
+
+                </RectButton>
+
+            </View>
+
+            <Text style={styles.totalConnections}>
+
+                Total de {totalConnections} conexões já realizadas {' '}
+                <Image source={heartIcon} />
+            
+            </Text>
+
+
+        </View>
+    )
+}
 
 export default Landing;

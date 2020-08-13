@@ -1,105 +1,107 @@
-import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+import { StyleSheet } from "react-native";
 
-interface FavoriteButtonProps {
-  favorited: boolean;
-}
+const styles = StyleSheet.create({
+    container:{
+        backgroundColor: '#FFF',
+        borderWidth: 1,
+        borderColor: '#E6E6F0',
+        borderRadius: 8,
+        marginBottom:16,
+        overflow: 'hidden',
+    },
 
-export const Container = styled.View`
-  background-color: #fff;
-  border-color: #e6e6f0;
-  border-radius: 8px;
-  border-width: 1px;
-  margin-bottom: 16px;
-  overflow: hidden;
-`;
+    profile:{
+        flexDirection: 'row',
+        alignItems: 'center',
+        padding:24,
+    },
 
-export const Profile = styled.View`
-  align-items: center;
-  flex-direction: row;
-  padding: 24px;
-`;
+    avatar:{
+        width:64,
+        height:64,
+        borderRadius:32,
+        backgroundColor: '#eee',
+    },
 
-export const Avatar = styled.Image`
-  background-color: #eee;
-  border-radius: 32px;
-  height: 64px;
-  width: 64px;
-`;
+    profileInfo:{
+        marginLeft:16,
+    },
 
-export const ProfileInfo = styled.View`
-  margin-left: 16px;
-`;
+    name:{
+        fontFamily: 'Archivo_700Bold',
+        color: '#32264D',
+        fontSize:20,
+    },
 
-export const Name = styled.Text`
-  color: #32264d;
-  font-family: 'Archivo_700Bold';
-  font-size: 20px;
-`;
+    subject:{
+        fontFamily: 'Poppins_400Regular',
+        color: '#6a6180',
+        fontSize: 12,
+        marginTop: 4,
+    },
+    bio:{
+        marginHorizontal: 24,
+        fontFamily: 'Poppins_400Regular',
+        fontSize: 14,
+        lineHeight: 27,
+        color: '#6A6180',
+    },
 
-export const Subject = styled.Text`
-  color: #6a6180;
-  font-family: 'Poppins_400Regular';
-  font-size: 12px;
-  margin-top: 4px;
-`;
+    footer:{
+        backgroundColor:'#fafafc',
+        padding:24,
+        alignItems:'center',
+        marginTop:24,
+    },
 
-export const Bio = styled.Text`
-  color: #6a6180;
-  font-family: 'Poppins_400Regular';
-  font-size: 14px;
-  line-height: 24px;
-  margin: 0px 24px;
-`;
+    price:{
+        fontFamily:'Poppins_400Regular',
+        color:'#6A6180',
+        fontSize: 14,
+    },
 
-export const Footer = styled.View`
-  align-items: center;
-  background-color: #fafafc;
-  margin-top: 24px;
-  padding: 24px;
-`;
+    priceValue:{
+        fontFamily: 'Archivo_700Bold',
+        color: '#8257E5',
+        fontSize:16,
+    },
 
-export const Price = styled.Text`
-  color: #6a6180;
-  font-family: 'Poppins_400Regular';
-  font-size: 14px;
-`;
+    buttonsContainer:{
+        flexDirection: 'row',
+        marginTop: 16,
+    },
 
-export const PriveValue = styled.Text`
-  color: #8257e5;
-  font-family: 'Archivo_700Bold';
-  font-size: 16px;
-`;
+    favoriteButton:{
+        backgroundColor: '#8257E5',
+        width:56,
+        height:56,
+        borderRadius:8,
+        justifyContent:'center',
+        alignItems:'center',
+        marginRight:8,
+    },
 
-export const ButtonsContainer = styled.View`
-  flex-direction: row;
-  margin-top: 16px;
-`;
+    favorited:{
+        backgroundColor: '#E33D3D',
+    },
 
-export const FavoriteButton = styled(RectButton)<FavoriteButtonProps>`
-  align-items: center;
-  background-color: ${props => (props.favorited ? '#e33d3d' : '#8257e5')};
-  border-radius: 8px;
-  justify-content: center;
-  height: 56px;
-  margin-right: 8px;
-  width: 56px;
-`;
+    contactButton:{
+        backgroundColor: '#04D361',
+        flex:1,
+        height:56,
+        borderRadius:8,
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        marginRight:8,
+    },
 
-export const ContactButton = styled(RectButton)`
-  align-items: center;
-  background-color: #04d361;
-  border-radius: 8px;
-  flex: 1;
-  flex-direction: row;
-  justify-content: center;
-  height: 56px;
-  margin-right: 8px;
-`;
+    contactButtonText:{
+        color: '#fff',
+        fontFamily: 'Archivo_700Bold',
+        fontSize:16,
+        marginLeft:16,
+    }
+})
 
-export const ContactButtonText = styled.Text`
-  color: #fff;
-  font-family: 'Archivo_700Bold';
-  font-size: 16px;
-  margin-left: 16px;
-`;
+export default styles;

@@ -1,46 +1,45 @@
-import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+import { StyleSheet } from 'react-native';
 
-export const Container = styled.View`
-  background-color: #8257e5;
-  flex: 1;
-  justify-content: center;
-  padding: 40px;
-`;
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor: '#8257E5',
+        justifyContent: 'center',
+        padding: 40,
+    },
+    content:{
+        flex: 1,
+        justifyContent:'center',
+    },
+    title:{
+        fontFamily: 'Archivo_700Bold',
+        color:'#fff',
+        fontSize: 32,
+        lineHeight: 37,
+        maxWidth: 180,
+    },
+    description:{
+        marginTop:24,
+        color: '#D4C2FF',
+        fontSize: 16,
+        lineHeight: 26,
+        fontFamily: 'Poppins_400Regular',
+        maxWidth: 240,
+    },
+    okButton:{
+        marginVertical: 40,
+        backgroundColor: '#04D361',
+        height: 58,
+        alignItems: 'center',
+        justifyContent: 'center',
+        borderRadius: 8,
+    },
+    okButtonText:{
+        color:'#fff',
+        fontSize:16,
+        fontFamily: 'Archivo_700Bold'
+    }
 
-export const Content = styled.ImageBackground`
-  flex: 1;
-  justify-content: center;
-`;
+})
 
-export const Title = styled.Text`
-  color: #fff;
-  font-family: 'Archivo_700Bold';
-  font-size: 32px;
-  line-height: 37px;
-  max-width: 180px;
-`;
-
-export const Description = styled.Text`
-  color: #d4c2ff;
-  font-family: 'Poppins_400Regular';
-  font-size: 16px;
-  line-height: 26px;
-  margin-top: 24px;
-  max-width: 240px;
-`;
-
-export const OkButton = styled(RectButton)`
-  align-items: center;
-  background-color: #04d361;
-  border-radius: 8px;
-  height: 58px;
-  justify-content: center;
-  margin: 40px 0px;
-`;
-
-export const OkButtonText = styled.Text`
-  color: #fff;
-  font-family: 'Archivo_700Bold';
-  font-size: 16px;
-`;
+export default styles;

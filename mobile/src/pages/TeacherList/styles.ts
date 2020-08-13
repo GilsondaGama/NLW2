@@ -1,45 +1,61 @@
-import styled from 'styled-components/native';
-import { Form } from '@unform/mobile';
-import { RectButton } from 'react-native-gesture-handler';
+import { StyleSheet } from "react-native";
 
-export const Container = styled.View`
-  background-color: #f0f0f7;
-  flex: 1;
-`;
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor: '#f0f0f7',
+    },
 
-export const List = styled.ScrollView`
-  margin-top: -40px;
-`;
+    teacherList:{
+        marginTop: -40,
+    },
 
-export const SearchForm = styled(Form)`
-  margin-bottom: 24px;
-`;
+    searchForm:{
+        marginBottom:24,
+    },
 
-export const Label = styled.Text`
-  color: #d4c2ff;
-  font-family: 'Poppins_400Regular';
-`;
+    label:{
+        color:'#d4c2ff',
+        fontFamily: 'Poppins_400Regular',
+    },
 
-export const InputGroup = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-`;
+    inputGroup:{
+        justifyContent:'space-between',
+    },
 
-export const InputBlock = styled.View`
-  width: 48%;
-`;
+    inputBlock:{
+        width:'100%',
+    },
 
-export const SubmitButton = styled(RectButton)`
-  align-items: center;
-  background-color: #04d361;
-  border-radius: 8px;
-  flex-direction: row;
-  justify-content: center;
-  height: 56px;
-`;
+    inputContainer:{
+        height: 54,
+        backgroundColor: '#fff',
+        borderRadius:8,
+        justifyContent: 'center',
+        paddingHorizontal: 16,
+        marginTop:4,
+        marginBottom:16,
+    },
 
-export const SubmitButtonText = styled.Text`
-  color: #fff;
-  font-family: 'Archivo_700Bold';
-  font-size: 16px;
-`;
+    input:{
+        color:'#C1BCCC'
+    },
+
+    submitButton:{
+        backgroundColor: '#04D361',
+        height:56,
+        borderRadius: 8,
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems: 'center',
+    },
+
+    submitButtonText:{
+        color:'#fff',
+        fontFamily:'Archivo_700Bold',
+        fontSize:16,
+    }
+
+})
+
+export default styles;

@@ -1,43 +1,57 @@
-import React, { useCallback, useState, useEffect } from 'react';
-import AsyncStorage from '@react-native-community/async-storage';
-import { useFocusEffect } from '@react-navigation/native';
+import React, { useState} from 'react';
+import { View, ScrollView} from 'react-native';
+import {useFocusEffect} from '@react-navigation/native'
 
 import PageHeader from '../../components/PageHeader';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
-import { Container, List } from './styles';
 
-const Favorites: React.FC = () => {
-  const [favorites, setFavorites] = useState<Teacher[]>([]);
+import styles from './styles';
+import AsyncStorage from '@react-native-community/async-storage';
 
-  const loadFavorites = useCallback(() => {
-    AsyncStorage.getItem('favorites').then(response => {
-      if (response) {
-        const favorited = JSON.parse(response);
-        setFavorites(favorited);
-      }
-    });
-  }, []);
+function Favorites(){
+    const [favorites, setFavorites] = useState([]);
 
-  useFocusEffect(() => {
-    loadFavorites();
-  });
+    function loadFavorites(){
+        AsyncStorage.getItem('favorites').then(response => {
+            if(response){
+                const favoritedTeachers = JSON.parse(response);
 
-  return (
-    <Container>
-      <PageHeader title="Meus proffys favoritos" />
+                setFavorites(favoritedTeachers);
+            }
+        })
+    }
 
-      <List
-        contentContainerStyle={{
-          paddingHorizontal: 16,
-          paddingBottom: 16,
-        }}
-      >
-        {favorites.map((favorite: Teacher) => (
-          <TeacherItem key={favorite.id} teacher={favorite} favorited={true} />
-        ))}
-      </List>
-    </Container>
-  );
-};
+    useFocusEffect(
+        React.useCallback(() => {
+          loadFavorites();
+        }, [])
+      )
+
+    return(
+        <View style={styles.container}>
+
+            <PageHeader title="Meus Proffys Favoritos" />
+
+            <ScrollView
+              style={styles.teacherList}
+              contentContainerStyle={{
+                  paddingHorizontal: 16,
+                  paddingBottom: 24
+              }}  
+            >
+
+              {favorites.map((teacher: Teacher) => {
+                <TeacherItem 
+                    key={teacher.id}
+                    teacher={teacher}
+                    favorited
+                />
+              })}
+
+            </ScrollView>
+
+        </View>
+    )
+}
 
 export default Favorites;

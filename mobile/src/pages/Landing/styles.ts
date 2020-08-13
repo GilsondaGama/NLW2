@@ -1,70 +1,58 @@
-import styled from 'styled-components/native';
-import { RectButton } from 'react-native-gesture-handler';
+import {StyleSheet} from 'react-native';
 
-interface ButtonProps {
-  color: string;
-}
-
-export const Container = styled.View`
-  background-color: #8257e5;
-  flex: 1;
-  justify-content: center;
-  padding: 40px;
-`;
-
-export const Banner = styled.Image`
-  width: 100%;
-`;
-
-export const Title = styled.Text`
-  color: #fff;
-  font-family: 'Poppins_400Regular';
-  font-size: 20px;
-  line-height: 30px;
-  margin-top: 80px;
-`;
-
-export const TitleBold = styled.Text`
-  font-family: 'Poppins_600SemiBold';
-`;
-
-export const ButtonsContainer = styled.View`
-  flex-direction: row;
-  margin-top: 40px;
-  justify-content: space-between;
-`;
-
-export const Button = styled(RectButton)<ButtonProps>`
-  background-color: ${props => {
-    switch (props.color) {
-      case 'primary':
-        return '#9871f5';
-
-      case 'secondary':
-        return '#04d361';
-
-      default:
-        return '#333';
+const styles = StyleSheet.create({
+    container:{
+        flex:1,
+        backgroundColor: '#8257E5',
+        justifyContent:'center',
+        padding:40,
+    },
+    banner:{
+        width:'100%',
+        resizeMode: 'contain',
+    },
+    title:{
+        fontFamily: 'Poppins_400Regular',
+        color:'#FFF',
+        fontSize:20,
+        lineHeight:30,
+        marginTop:80,
+    },
+    titleBold:{
+        fontFamily: 'Poppins_600SemiBold',
+    },
+    buttonsContainer:{
+        flexDirection:'row',
+        marginTop:40,
+        justifyContent:'space-between',
+    },
+    button:{
+        height:150,
+        width:'48%',
+        borderRadius:8,
+        padding:24,
+        justifyContent:'space-between',
+    },
+    buttonPrimary:{
+        backgroundColor:'#9871F5',
+    },
+    buttonSecondary:{
+        backgroundColor:'#04d361',
+    },
+    buttonText:{
+        fontFamily: 'Archivo_700Bold',
+        color:'#FFF',
+        fontSize:18,
+    },
+    totalConnections:{
+        fontFamily: 'Poppins_400Regular',
+        color:'#d4c2ff',
+        fontSize:12,
+        lineHeight: 20,
+        maxWidth: 140,
+        marginTop: 40,
     }
-  }};
-  border-radius: 8px;
-  height: 150px;
-  justify-content: space-between;
-  padding: 24px;
-  width: 48%;
-`;
+    
+})
 
-export const ButtonText = styled.Text`
-  color: #fff;
-  font-family: 'Archivo_700Bold';
-  font-size: 20px;
-`;
-
-export const TotalConnections = styled.Text`
-  color: #d4c2ff;
-  font-family: 'Poppins_400Regular';
-  font-size: 12px;
-  line-height: 20px;
-  margin-top: 40px;
-  max-width: 140px;
-`;
+export default styles;
