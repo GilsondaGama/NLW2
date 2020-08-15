@@ -22,7 +22,7 @@ export default class UsersController {
     }
   }
 
-  async create(request: Request, response: Response) {
+  async create(request: Request, response: Response): Promise<Response> {
     const { name, email, password } = request.body;
 
     const schema = object().shape({
@@ -95,7 +95,7 @@ export default class UsersController {
     }
   }
 
-  async resetPassword(request: Request, response: Response) {
+  async resetPassword(request: Request, response: Response): Promise<Response> {
     const { token, password } = request.body;
 
     const { secret } = authConfig.jwt;

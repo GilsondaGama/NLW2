@@ -1,12 +1,13 @@
 import knex from 'knex';
-import path from 'path';
-
-// Migrations => Controlam a versão do banco de dados (funciona como o git);
+import 'dotenv/config';
 
 const db = knex({
-  client: 'sqlite3',
+  client: 'pg',
   connection: {
-    filename: path.resolve(__dirname, 'database.sqlite'),
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
   },
   useNullAsDefault: true,
 });
