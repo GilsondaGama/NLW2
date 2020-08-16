@@ -34,13 +34,6 @@
 </h3>
 
 
-
-## :gear: Back-end
-
-### :information_source: Deploy
-
-- https://proffy-backend.herokuapp.com
-
 ### :information_source: Instruções Back-end
 
 ```bash
@@ -71,10 +64,6 @@ yarn dev:server
 ---
 
 ## :computer: Front-end
-
-### :information_source: Deploy
-
-- https://proffy-web.herokuapp.com
 
 ### :information_source: Instruções Front-end
 
