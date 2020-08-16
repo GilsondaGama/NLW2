@@ -4,6 +4,8 @@
 
 <h3 align="center">
   Proffy: back-end, front-end web e mobile
+  <br>
+  Plataforma de estudos online, para conectar alunos e professores com o intuito de flexibilidade de horários.
 </h3>
 
 <p align="center">
@@ -126,4 +128,3 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
     <img alt="React.js version" src="https://img.shields.io/badge/Instagram-@gilsondagama-833AB4?style=flat&logoColor=white&logo=instagram">
   </a>
 </p>
-[Rocketseat](https://rocketseat.com.br/) pelo NLW!
