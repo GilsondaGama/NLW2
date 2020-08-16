@@ -8,7 +8,7 @@
 
 <h3 align="center">
   <br>
-  Plataforma de estudos online, para conectar alunos e professores com o intuito de flexibilidade de horários.
+  Proffy: back-end, front-end web e mobile
 </h3>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/GilsondaGama/GoStack11-GoBarber?color=yellow">
