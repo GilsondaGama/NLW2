@@ -9,44 +9,39 @@ import logoImg from '../../assets/images/logo.png';
 import styles from './styles';
 
 interface PageHeaderProps {
-    title: string,
-    headerRigth?: ReactNode;
+  title: string;
+  headerRight?: ReactNode;
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, headerRigth, children }) => {
-    const { navigate } = useNavigation();
+const PageHeader: React.FC<PageHeaderProps> = ({
+  title,
+  headerRight,
+  children,
+}) => {
+  const { navigate } = useNavigation();
 
-    function handleGoBack(){
-        navigate('Landing')
-    }
+  function handleGoBack() {
+    navigate('Landing');
+  }
 
-    return(
-        <View style={styles.container}>
+  return (
+    <View style={styles.container}>
+      <View style={styles.topBar}>
+        <BorderlessButton onPress={handleGoBack}>
+          <Image source={backIcon} resizeMode="contain"></Image>
+        </BorderlessButton>
 
-            <View style={styles.topBar}>
+        <Image source={logoImg} resizeMode="contain"></Image>
+      </View>
 
-                <BorderlessButton onPress={handleGoBack}>
+      <View style={styles.header}>
+        <Text style={styles.title}>{title}</Text>
+        {headerRight}
+      </View>
 
-                    <Image source={backIcon} resizeMode="contain" />
-
-                </BorderlessButton>
-
-                <Image source={logoImg} resizeMode="contain" />
-
-            </View>
-
-            <View style={styles.header}>
-            
-                <Text style={styles.title}>{title}</Text>
-
-                {headerRigth}
-
-            </View>
-            
-            {children}
-
-        </View>
-    )
-}
+      {children}
+    </View>
+  );
+};
 
 export default PageHeader;
