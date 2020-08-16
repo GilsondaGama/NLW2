@@ -7,16 +7,13 @@
   align-items: center;
 
   color: var(--color-text-in-primary);
-  background-color: var(--color-primary);
-/* 
   background: linear-gradient(
     var(--color-primary) 70%,
     var(--color-background) 0%
-  ); */
+  );
 }
 
 .logo-container {
-  background-color: var(--color-primary);
   text-align: center;
   margin-bottom: 3.6rem;
 }
@@ -96,13 +93,11 @@
   color: var(--color-text-base);
   font-size: 2rem;
   font-weight: 500;
-  color: var(--color-text-in-primary);
 }
 
 .total h5 span {
   display: block;
   font-weight: bold;
-  color: var(--color-text-in-primary);
 }
 
 .total > span {
@@ -111,7 +106,8 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  color: var(--color-text-in-primary);
+
+  color: var(--color-text-complement);
 }
 
 .total > span span {

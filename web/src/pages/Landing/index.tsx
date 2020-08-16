@@ -17,7 +17,7 @@ const Landing: React.FC = () => {
   const [totalConnections, setTotalConnections] = useState(0);
 
   useEffect(() => {
-    api.get('connections').then(response => {
+    api.get('connections').then((response) => {
       const { total } = response.data;
 
       setTotalConnections(total);
@@ -27,7 +27,7 @@ const Landing: React.FC = () => {
   return (
     <div id="page-landing">
       <LandingHeader />
-      <div id="page-landing-content">
+      <div id="page-landing-content" className="container">
         <div className="logo-container">
           <img src={logoImg} alt="Proffy" />
           <h2>Sua plataforma de estudos online.</h2>
