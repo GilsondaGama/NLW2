@@ -7,7 +7,7 @@ import PageHeader from '../../components/PageHeader';
 import Select from '../../components/Select';
 import TeacherItem, { Teacher } from '../../components/TeacherItem';
 
-import smile from '../../assets/images/icons/smile.svg';
+import smile from '../../assets/images/icons/give-classes.svg';
 
 import api from '../../services/api';
 
