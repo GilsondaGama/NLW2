@@ -3,11 +3,13 @@
 </h1>
 
 <h3 align="center">
-  Proffy: back-end, front-end web e mobile
-  <br>
   Plataforma de estudos online, para conectar alunos e professores com o intuito de flexibilidade de horários.
 </h3>
 
+<h3 align="center">
+  <br>
+  Plataforma de estudos online, para conectar alunos e professores com o intuito de flexibilidade de horários.
+</h3>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/GilsondaGama/GoStack11-GoBarber?color=yellow">
 
@@ -34,6 +36,7 @@
 <h3 align="center">
   <a href="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/server/Insomnia.json" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
 </h3>
+
 
 
 ### :information_source: Instruções Back-end
