@@ -3,9 +3,13 @@
 </h1>
 
 <h3 align="center">
-  Proffy: back-end, front-end web e mobile
+  Plataforma de estudos online, para conectar alunos e professores com o intuito de flexibilidade de horários.
 </h3>
 
+<h3 align="center">
+  <br>
+  Proffy: back-end, front-end web e mobile
+</h3>
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/GilsondaGama/GoStack11-GoBarber?color=yellow">
 
@@ -34,12 +38,6 @@
 </h3>
 
 
-
-## :gear: Back-end
-
-### :information_source: Deploy
-
-- https://proffy-backend.herokuapp.com
 
 ### :information_source: Instruções Back-end
 
@@ -71,10 +69,6 @@ yarn dev:server
 ---
 
 ## :computer: Front-end
-
-### :information_source: Deploy
-
-- https://proffy-web.herokuapp.com
 
 ### :information_source: Instruções Front-end
 
@@ -137,4 +131,3 @@ Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para ma
     <img alt="React.js version" src="https://img.shields.io/badge/Instagram-@gilsondagama-833AB4?style=flat&logoColor=white&logo=instagram">
   </a>
 </p>
-[Rocketseat](https://rocketseat.com.br/) pelo NLW!
