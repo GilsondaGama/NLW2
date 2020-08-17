@@ -39,6 +39,24 @@
 
 
 
+<br>
+Click to expand.
+<h1 align="center">
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/01.gif" width="20%"/>
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/02.gif" width="20%"/>
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/03.gif" width="20%"/>
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/04.gif" width="20%"/>
+</h1>
+<br>
+<h1 align="center">
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/screenshots/07.jpeg" width="10%"/>
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/screenshots/08.jpeg" width="10%"/>  
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/screenshots/09.jpeg" width="10%"/>  
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/screenshots/10.jpeg" width="10%"/>  
+</h1>
+
+
+
 ### :information_source: Instruções Back-end
 
 ```bash
