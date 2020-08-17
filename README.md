@@ -42,7 +42,7 @@
 <br>
 Click to expand.
 <h1 align="center">
-    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/01.gif" width="20%"/>
+    <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/01.gif" width="19%"/>
     <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/02.gif" width="20%"/>
     <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/03.gif" width="20%"/>
     <img src="https://github.com/GilsondaGama/NLW2-Proffys/blob/master/.github/gifs/04.gif" width="20%"/>
